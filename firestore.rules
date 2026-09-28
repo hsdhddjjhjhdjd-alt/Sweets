@@ -1,0 +1,29 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    // Orders collection: Public ordering and real-time lookup
+    match /orders/{orderId} {
+      allow read, write: if true;
+    }
+
+    // Reservations collection: Salon and VIP table booking
+    match /reservations/{reservationId} {
+      allow read, write: if true;
+    }
+
+    // Catering Inquiries collection: Event & banquet inquiries
+    match /cateringInquiries/{inquiryId} {
+      allow read, write: if true;
+    }
+
+    // Settings collection: Store configuration and WhatsApp number
+    match /settings/{docId} {
+      allow read, write: if true;
+    }
+
+    // Default safety deny for any other unspecified paths
+    match /{document=**} {
+      allow read, write: if false;
+    }
+  }
+}

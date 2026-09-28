@@ -1,0 +1,201 @@
+@import "tailwindcss";
+
+@layer base {
+  :root {
+    --color-ruby: #8B1528;
+    --color-ruby-dark: #680E1C;
+    --color-ruby-light: #A51D34;
+    --color-gold: #C5A059;
+    --color-gold-light: #DFB15B;
+    --color-gold-dark: #A37C32;
+    --color-cream: #FDFBF7;
+    --color-cream-subtle: #F6F2E9;
+  }
+
+  html {
+    scroll-behavior: smooth;
+    font-family: 'Cairo', 'Alexandria', 'Tajawal', 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
+  }
+
+  /* When dir="ltr" */
+  [dir="ltr"] {
+    font-family: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
+  }
+
+  /* Specific typography presets */
+  .font-cairo {
+    font-family: 'Cairo', system-ui, -apple-system, sans-serif;
+  }
+
+  .font-alexandria {
+    font-family: 'Alexandria', system-ui, -apple-system, sans-serif;
+  }
+
+  .font-almarai {
+    font-family: 'Almarai', system-ui, -apple-system, sans-serif;
+  }
+
+  .font-amiri {
+    font-family: 'Amiri', serif;
+  }
+
+  .font-display {
+    font-family: 'Cairo', 'Playfair Display', 'Cormorant Garamond', 'Amiri', serif;
+  }
+
+  .font-arabic-display {
+    font-family: 'Cairo', 'Amiri', serif;
+  }
+}
+
+/* Subtle Arabesque Pattern background */
+.bg-arabesque-subtle {
+  background-color: #FDFCF7;
+  background-image: radial-gradient(rgba(197, 160, 89, 0.08) 1px, transparent 1px), radial-gradient(rgba(139, 21, 40, 0.04) 1px, #FDFCF7 1px);
+  background-size: 28px 28px;
+  background-position: 0 0, 14px 14px;
+}
+
+.bg-arabesque-ruby {
+  background-color: #7A0C1E;
+  background-image: radial-gradient(rgba(223, 177, 91, 0.15) 1px, transparent 1px), radial-gradient(rgba(255, 255, 255, 0.05) 1px, #7A0C1E 1px);
+  background-size: 32px 32px;
+  background-position: 0 0, 16px 16px;
+}
+
+/* Subtle gold foil shine animation */
+@keyframes shimmer {
+  0% { transform: translateX(-100%); }
+  100% { transform: translateX(200%); }
+}
+
+.animate-shimmer {
+  animation: shimmer 2.5s infinite;
+}
+
+/* Atmospheric Ken Burns Slow Motion for Hero Background */
+@keyframes kenburns-slow {
+  0% {
+    transform: scale(1.0) translate(0, 0);
+  }
+  50% {
+    transform: scale(1.08) translate(-1.5%, -1%);
+  }
+  100% {
+    transform: scale(1.04) translate(1.5%, 0.8%);
+  }
+}
+
+.animate-kenburns {
+  animation: kenburns-slow 24s ease-in-out infinite alternate;
+  will-change: transform;
+}
+
+/* Ambient Floating Particles & Light Orbs */
+@keyframes float-gentle {
+  0%, 100% {
+    transform: translateY(0px) translateX(0px) rotate(0deg);
+    opacity: 0.4;
+  }
+  33% {
+    transform: translateY(-16px) translateX(10px) rotate(3deg);
+    opacity: 0.8;
+  }
+  66% {
+    transform: translateY(-8px) translateX(-12px) rotate(-3deg);
+    opacity: 0.5;
+  }
+}
+
+.animate-float-1 {
+  animation: float-gentle 9s ease-in-out infinite;
+}
+
+.animate-float-2 {
+  animation: float-gentle 13s ease-in-out infinite 2s;
+}
+
+.animate-float-3 {
+  animation: float-gentle 16s ease-in-out infinite 4s;
+}
+
+@keyframes pulse-subtle {
+  0%, 100% {
+    opacity: 0.35;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.65;
+    transform: scale(1.05);
+  }
+}
+
+.animate-pulse-subtle {
+  animation: pulse-subtle 7s ease-in-out infinite;
+}
+
+/* Animated Checkmark Drawing & Pulse for Order Success */
+@keyframes checkmark-circle {
+  0% {
+    stroke-dashoffset: 260;
+    transform: scale(0.65);
+    opacity: 0;
+  }
+  60% {
+    stroke-dashoffset: 0;
+    transform: scale(1.08);
+    opacity: 1;
+  }
+  100% {
+    stroke-dashoffset: 0;
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+@keyframes checkmark-stroke {
+  0% {
+    stroke-dashoffset: 70;
+    opacity: 0;
+  }
+  45% {
+    stroke-dashoffset: 70;
+    opacity: 1;
+  }
+  100% {
+    stroke-dashoffset: 0;
+    opacity: 1;
+  }
+}
+
+.animate-check-circle {
+  stroke-dasharray: 260;
+  stroke-dashoffset: 260;
+  animation: checkmark-circle 0.85s cubic-bezier(0.65, 0, 0.45, 1) forwards;
+  transform-origin: center;
+}
+
+.animate-check-stroke {
+  stroke-dasharray: 70;
+  stroke-dashoffset: 70;
+  animation: checkmark-stroke 0.9s cubic-bezier(0.65, 0, 0.45, 1) 0.25s forwards;
+}
+
+@keyframes celebrate-pop {
+  0% {
+    transform: scale(0.85);
+    opacity: 0;
+  }
+  60% {
+    transform: scale(1.03);
+    opacity: 1;
+  }
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+.animate-celebrate-pop {
+  animation: celebrate-pop 0.5s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}

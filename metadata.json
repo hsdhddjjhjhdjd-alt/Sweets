@@ -1,0 +1,8 @@
+{
+  "name": "Remix Remix قصر الحلويات الملكي | Royal Pâtisserie \u0026 Gourmet Sweets",
+  "description": "Modern luxury Oriental \u0026 Western Pastry and Dessert Shop featuring handcrafted Kunafa, Baklava, French Mille-feuille, Red Velvet, and bespoke catering.",
+  "requestFramePermissions": [],
+  "majorCapabilities": [
+    "MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"
+  ]
+}

@@ -1,0 +1,225 @@
+{
+  "entities": {
+    "OrderRecord": {
+      "title": "OrderRecord",
+      "description": "Customer pastry and dessert orders, custom cakes, and delivery records",
+      "type": "object",
+      "properties": {
+        "orderNumber": {
+          "type": "string",
+          "description": "Unique human-readable order number (e.g. RYL-1042)"
+        },
+        "customerName": {
+          "type": "string",
+          "description": "Full name of the customer"
+        },
+        "customerPhone": {
+          "type": "string",
+          "description": "Customer contact mobile phone number"
+        },
+        "governorate": {
+          "type": "string",
+          "description": "Governorate/City in Egypt"
+        },
+        "address": {
+          "type": "string",
+          "description": "Detailed street address or landmark"
+        },
+        "deliveryType": {
+          "type": "string",
+          "enum": ["delivery", "pickup"],
+          "description": "Method of delivery: chilled doorstep delivery or shop pickup"
+        },
+        "selectedBranchName": {
+          "type": "string",
+          "description": "Name of pickup branch if pickup selected"
+        },
+        "items": {
+          "type": "array",
+          "description": "List of ordered desserts, portions, quantities and special notes"
+        },
+        "subtotal": {
+          "type": "number",
+          "description": "Order subtotal before discounts"
+        },
+        "discount": {
+          "type": "number",
+          "description": "Discount amount applied"
+        },
+        "deliveryFee": {
+          "type": "number",
+          "description": "Chilled delivery shipping fee"
+        },
+        "total": {
+          "type": "number",
+          "description": "Final total order price"
+        },
+        "status": {
+          "type": "string",
+          "enum": ["new", "preparing", "out_for_delivery", "delivered", "cancelled"],
+          "description": "Current processing and delivery status"
+        },
+        "paymentMethod": {
+          "type": "string",
+          "description": "Payment method: cash_on_delivery, instapay, or vodafone_cash"
+        },
+        "appliedPromo": {
+          "type": "string",
+          "description": "Promo discount code used"
+        },
+        "specialInstructions": {
+          "type": "string",
+          "description": "Special preparation, sweet balance or gift packaging notes"
+        },
+        "customCakeDetails": {
+          "type": "object",
+          "description": "Dimensions, layers, shapes, theme images for custom cake orders"
+        },
+        "createdAt": {
+          "type": "string",
+          "description": "ISO timestamp of order placement"
+        }
+      },
+      "required": ["orderNumber", "customerName", "customerPhone", "total", "status", "createdAt"]
+    },
+    "ReservationRecord": {
+      "title": "ReservationRecord",
+      "description": "VIP salon and high tea table bookings",
+      "type": "object",
+      "properties": {
+        "bookingNumber": {
+          "type": "string",
+          "description": "Unique booking reference code"
+        },
+        "customerName": {
+          "type": "string",
+          "description": "Guest contact name"
+        },
+        "customerPhone": {
+          "type": "string",
+          "description": "Guest phone number"
+        },
+        "guestsCount": {
+          "type": "number",
+          "description": "Number of guests"
+        },
+        "date": {
+          "type": "string",
+          "description": "Reservation date (YYYY-MM-DD)"
+        },
+        "time": {
+          "type": "string",
+          "description": "Reservation time slot"
+        },
+        "seatingArea": {
+          "type": "string",
+          "description": "VIP Salon, Main Hall, or Terrace"
+        },
+        "specialOccasion": {
+          "type": "string",
+          "description": "Birthday, Anniversary, Business High Tea, etc."
+        },
+        "status": {
+          "type": "string",
+          "enum": ["pending", "confirmed", "completed", "cancelled"],
+          "description": "Reservation status"
+        },
+        "notes": {
+          "type": "string",
+          "description": "Special dietary or seating requests"
+        },
+        "createdAt": {
+          "type": "string",
+          "description": "Timestamp of creation"
+        }
+      },
+      "required": ["bookingNumber", "customerName", "customerPhone", "guestsCount", "date", "time", "status", "createdAt"]
+    },
+    "CateringInquiry": {
+      "title": "CateringInquiry",
+      "description": "Wedding, banquet and hospitality event catering requests",
+      "type": "object",
+      "properties": {
+        "customerName": {
+          "type": "string",
+          "description": "Host name or company"
+        },
+        "customerPhone": {
+          "type": "string",
+          "description": "Contact phone number"
+        },
+        "guestCount": {
+          "type": "number",
+          "description": "Number of event attendees"
+        },
+        "eventType": {
+          "type": "string",
+          "description": "Wedding, Engagement, Corporate, Banquet"
+        },
+        "selectedDesserts": {
+          "type": "array",
+          "description": "List of selected dessert categories and quantities"
+        },
+        "estimatedTotal": {
+          "type": "number",
+          "description": "Estimated budget or quotation"
+        },
+        "status": {
+          "type": "string",
+          "enum": ["new", "contacted", "confirmed", "cancelled"],
+          "description": "Inquiry review status"
+        },
+        "createdAt": {
+          "type": "string",
+          "description": "Timestamp of inquiry submission"
+        }
+      },
+      "required": ["customerName", "customerPhone", "guestCount", "eventType", "status", "createdAt"]
+    },
+    "ShopSettings": {
+      "title": "ShopSettings",
+      "description": "Shop manager configuration, contact whatsapp, and store parameters",
+      "type": "object",
+      "properties": {
+        "whatsappNumber": {
+          "type": "string",
+          "description": "Shop official WhatsApp phone number for orders"
+        },
+        "shopNameAr": {
+          "type": "string",
+          "description": "Shop name in Arabic"
+        },
+        "shopNameEn": {
+          "type": "string",
+          "description": "Shop name in English"
+        },
+        "currencySymbol": {
+          "type": "string",
+          "description": "Display currency symbol"
+        },
+        "adminPin": {
+          "type": "string",
+          "description": "Security PIN for admin dashboard access"
+        }
+      }
+    }
+  },
+  "firestore": {
+    "/orders/{orderId}": {
+      "schema": "OrderRecord",
+      "description": "Customer pastry orders and custom cake delivery documents"
+    },
+    "/reservations/{reservationId}": {
+      "schema": "ReservationRecord",
+      "description": "VIP high tea and tasting salon table reservations"
+    },
+    "/cateringInquiries/{inquiryId}": {
+      "schema": "CateringInquiry",
+      "description": "Banquets and wedding catering inquiries"
+    },
+    "/settings/{docId}": {
+      "schema": "ShopSettings",
+      "description": "Global shop configuration parameters"
+    }
+  }
+}
